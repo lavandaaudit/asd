@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>IBONARIUM: KYIV — THE LAST SIGNAL | 16-BIT OPEN WORLD SURVIVAL</title>
+<meta name="description" content="Ізометричний 16-bit open world survival у покинутому Києві. Стиль Sega Mega Drive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<div id="shell">
+  <header id="pagehead">
+    <div class="ph-l">
+      <span class="ph-t1">IBONARIUM<span class="ph-dot">:</span> KYIV</span>
+      <span class="ph-t2">THE LAST SIGNAL — OPEN WORLD SURVIVAL</span>
+    </div>
+    <div class="ph-r">
+      <span class="ph-badge">16-BIT</span>
+      <span class="ph-badge gold">MEGA DRIVE STYLE</span>
+      <span class="ph-badge">ISOMETRIC</span>
+    </div>
+  </header>
+
+  <div id="console">
+    <div id="console-top">
+      <div class="cbrand">
+        <span class="cb1">IBONARIUM</span>
+        <span class="cb2">16-BIT HOME CONSOLE — MODEL IK-1601</span>
+      </div>
+      <div class="cctl">
+        <button id="btn-power" class="cbtn active" title="Живлення"><i class="led"></i><span>POWER</span></button>
+        <button id="btn-reset" class="cbtn" title="Перезапуск гри"><i class="led"></i><span>RESET</span></button>
+      </div>
+    </div>
+
+    <div id="cartrow">
+      <div id="cart">
+        <div id="cart-label">
+          <span class="cl-top">IBONARIUM</span>
+          <span class="cl-mid">KYIV</span>
+          <span class="cl-low">THE LAST SIGNAL</span>
+          <span class="cl-foot">OPEN WORLD SURVIVAL • 16 MEG</span>
+        </div>
+        <div id="cart-slot"></div>
+      </div>
+      <div id="cart-info">
+        <b>КАРТРИДЖ 16 MEG</b>
+        Великий відкритий світ: 7 районів Києва, 6 знакових локацій, Дніпро, мости, метро.
+        Графіка: рендери Kenney City Kits (CC0).
+        <span class="cart-warn">Клавіатура: WASD — рух, E — дія, SPACE — атака, TAB — карта, V — повний екран. На телефоні — джойстик на екрані.</span>
+      </div>
+    </div>
+
+    <div id="tv">
+      <div id="crt">
+        <canvas id="game" width="320" height="224"></canvas>
+        <div id="scanlines"></div>
+        <div id="vign"></div>
+        <button id="btn-fs-crt" title="На все вікно (V / подвійний клік)">⛶</button>
+        <div id="dpad"><div id="dpad-stick"><div id="dpad-knob"></div></div></div>
+        <div id="tbtns">
+          <div class="tbn" data-tk="a">E</div>
+          <div class="tbn" data-tk="b">ATK</div>
+          <div class="tbn" data-tk="c">MAP</div>
+          <div class="tbn" data-tk="d">BAG</div>
+          <div class="tbn" data-tk="e">LGT</div>
+          <div class="tbn" data-tk="h">RUN</div>
+        </div>
+
+        <div id="hud" class="hidden">
+          <div id="hud-tl">
+            <canvas id="face" width="46" height="46"></canvas>
+            <div id="hud-bars">
+              <div class="bname">МАРКО КОВАЛЕНКО</div>
+              <div class="bar hp"><i id="bar-hp"></i><u>HP</u></div>
+              <div class="bar st"><i id="bar-st"></i><u>ST</u></div>
+              <div class="bar-row">
+                <div class="bar mini hu"><i id="bar-hu"></i></div>
+                <div class="bar mini wa"><i id="bar-wa"></i></div>
+                <span class="bmini">ЇЖА</span><span class="bmini">ВОДА</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="hud-tr">
+            <canvas id="compass" width="176" height="18"></canvas>
+            <div id="hud-loc">ПОДІЛ</div>
+            <div id="hud-day">ДЕНЬ 1 <span id="hud-clock">08:00</span> <b id="hud-warn"></b></div>
+            <canvas id="minimap" width="96" height="96"></canvas>
+            <div id="hud-mission">
+              <span class="mflag"></span>
+              <div id="hud-mtitle">...</div>
+            </div>
+            <div id="hud-mob"></div>
+          </div>
+
+          <div id="hotbar">
+            <div class="slot" data-i="0"><canvas width="26" height="22"></canvas><b>1</b><span id="hb-a1"></span></div>
+            <div class="slot" data-i="1"><canvas width="26" height="22"></canvas><b>2</b><span id="hb-a2"></span></div>
+            <div class="slot sel" data-i="2"><canvas width="26" height="22"></canvas><b>3</b><span id="hb-a3"></span></div>
+            <div class="slot" data-i="3"><canvas width="26" height="22"></canvas><b>4</b><span id="hb-a4"></span></div>
+          </div>
+
+          <div id="prompt" class="hidden"></div>
+          <div id="log"></div>
+          <div id="banner" class="hidden"></div>
+          <div id="hurt"></div>
+          <div id="toolbelt">
+            <span id="tb-light" class="tb hidden">ЛІХТАР</span>
+            <span id="tb-radio" class="tb hidden">РАДІО</span>
+            <span id="tb-car" class="tb hidden">АВТО</span>
+          </div>
+        </div>
+
+        <div id="ui">
+          <div id="boot" class="screen"></div>
+
+          <div id="title" class="screen hidden">
+            <canvas id="logo" width="320" height="150"></canvas>
+            <div id="menu"></div>
+            <div id="title-foot">© 199X IBONARIUM GAMES • KYIV • 16-BIT ISOMETRIC SURVIVAL</div>
+          </div>
+
+          <div id="loading" class="screen hidden">
+            <div class="ld1">СЕКТОР</div>
+            <div id="load-sector">—</div>
+            <div id="load-bar"><i></i></div>
+            <div id="load-tip">—</div>
+          </div>
+
+          <div id="pause" class="screen hidden">
+            <div class="pt">ПАУЗА</div>
+            <div id="pause-menu" class="menu"></div>
+          </div>
+
+          <div id="inv" class="panel hidden">
+            <div class="pt small">РЮКЗАК МАРКА</div>
+            <div id="inv-list"></div>
+            <div class="pt small">КРАФТ</div>
+            <div id="craft-list"></div>
+            <div class="ptiny">M / ESC — ЗАКРИТИ • ENTER/КЛІК — ВИКОРИСТИ</div>
+          </div>
+
+          <div id="bigmap" class="screen hidden">
+            <div class="pt small">КАРТА КИЄВА — <span id="map-disc">0%</span> ДОСЛІДЖЕНО</div>
+            <canvas id="mapc" width="600" height="480"></canvas>
+            <div class="ptiny">▲ ЦІЛЬ • ⌂ СХОВАНКА • ◆ ПАМ'ЯТКА • ((·)) РАДІО • TAB — ЗАКРИТИ</div>
+          </div>
+
+          <div id="dialog" class="hidden">
+            <div id="dlg-name">РАДІО</div>
+            <div id="dlg-text">—</div>
+            <div id="dlg-opts"></div>
+          </div>
+
+          <div id="controls" class="screen hidden">
+            <div class="pt">КЕРУВАННЯ</div>
+            <div id="ctrl-list">
+              <div><b>WASD / ←↑↓→</b> рух у 8 напрямках</div>
+              <div><b>SHIFT</b> біг (витрачає витривалість)</div>
+              <div><b>E</b> взаємодія: лут, схованки, метро, авто</div>
+              <div><b>SPACE</b> атака / постріл / сигнал в авто</div>
+              <div><b>Q або 1–4</b> зміна слота: мачете / пістолет / граната / аптечка</div>
+              <div><b>G</b> кинути гранату</div>
+              <div><b>M / I</b> рюкзак і крафт</div>
+              <div><b>TAB</b> велика карта Києва</div>
+              <div><b>F</b> ліхтар (ночі без нього — сліпотa)</div>
+              <div><b>ESC</b> пауза</div>
+              <div><b>АВТО:</b> W/S — газ/гальмо, A/D — повороти, E — вийти</div>
+            </div>
+            <button class="tbtn" onclick="IB.MAIN.backToTitle()">← НАЗАД (ESC)</button>
+          </div>
+
+          <div id="about" class="screen hidden">
+            <div class="pt">ПРО ГРУ ТА АСЕТИ</div>
+            <div id="about-list">
+              <div><b>IBONARIUM: KYIV — THE LAST SIGNAL</b> — ізометричний open world survival у стилі 16-bit Sega Mega Drive. Один великий Київ: Оболонь, Поділ, Старе місто, Хрещатик, Майдан, Печерськ, Лавра, Батьківщина-Мати, Лівий берег, Дарниця, Гідропарк, метро і Дніпро з мостами.</div>
+              <div><b>ГРАФІКА БАЗУЄТЬСЯ НА БЕЗКОШТОВНИХ АСЕТАХ KENNEY (CC0):</b></div>
+              <div>Kenney — City Kit (Commercial) <span class="free">CC0 • БЕЗКОШТОВНО</span></div>
+              <div>Kenney — City Kit (Industrial) <span class="free">CC0 • БЕЗКОШТОВНО</span></div>
+              <div>Kenney — City Kit (Suburban) <span class="free">CC0 • БЕЗКОШТОВНО</span></div>
+              <div>Kenney — City Kit (Roads) <span class="free">CC0 • БЕЗКОШТОВНО</span></div>
+              <div><i>3D-моделі наборів Kenney відрендерені в ізометрію 2:1 спеціально під тайл-сітку гри (32×16). Персонажі, предмети і локації-домінанти намальовані кодом у палітрі Kenney.</i></div>
+              <div>SmallScaleInt — Zombie City HD Isometric Tileset <span class="paid">ПЛАТНО $29.99 — НЕ ВИКОРИСТАНО</span></div>
+              <div><i>Гра працює офлайн, ліцензійно чисто.</i></div>
+              <div><b>ЕМУЛЯТОР:</b> слот Sega Mega Drive/Genesis ROM працює на EmulatorJS (Genesis Plus GX) — підвантажується з CDN, потрібна ваша власна ROM-копія. На мобільних EmulatorJS показує свій віртуальний геймпад автоматично.</div>
+            </div>
+            <button class="tbtn" onclick="IB.MAIN.backToTitle()">← НАЗАД (ESC)</button>
+          </div>
+
+          <div id="dead" class="screen hidden">
+            <div class="pt red">ВИ ЗАГИНУЛИ</div>
+            <div id="dead-txt">Ти загинув на вулицях Києва…</div>
+            <div class="ptiny">ENTER — ВІДНОВИТИСЬ В ОСТАННІЙ СХОВАНЦІ</div>
+          </div>
+
+          <div id="end" class="screen hidden">
+            <div class="pt">ОСТАННІЙ СИГНАЛ ПЕРЕДАНО</div>
+            <div id="end-stats"></div>
+            <div class="ptiny">ENTER — ПРОДОВЖИТИ ВИЖИВАННЯ У ВІДКРИТОМУ СВІТІ</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tv-power"></div>
+    </div>
+
+    <div id="console-bottom">
+      <div class="cb-note">CRT 320×224 • ГРАФІКА: KENNEY CITY KITS (CC0) • ІЗОМЕТРІЯ 2:1</div>
+      <div class="cb-ctl">
+        <label class="slider"><span>ГУЧНІСТЬ</span><input id="vol" type="range" min="0" max="100" value="55"></label>
+        <button id="btn-scan" class="tbtn active">CRT</button>
+        <button id="btn-fs" class="tbtn">⛶ FULLSCREEN</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="romsec">
+    <div class="rom-t">▓ СЛОТ SEGA MEGA DRIVE / GENESIS — EMULATORJS (GENESIS PLUS GX)</div>
+    <div class="rom-d">Хочеш запустити справжню 16-битну ROM-ку? Вибери файл (.md / .bin / .gen / .smd / .zip) — ядро емулятора підвантажиться з CDN EmulatorJS. Наш картридж KYIV грається прямо на сторінці вище — без файлів.</div>
+    <div class="rom-row">
+      <input id="romfile" type="file" accept=".md,.bin,.gen,.smd,.zip,.68k,.sgd">
+      <button id="rom-start" class="tbtn active">▶ ЗАПУСТИТИ ROM</button>
+    </div>
+    <div id="ejs-wrap" class="hidden"><div id="ejs-game" style="width:100%;aspect-ratio:10/7;background:#000"></div></div>
+  </section>
+
+  <footer id="pagefoot">
+    <span>IBONARIUM: KYIV — THE LAST SIGNAL • open world survival у стилістиці Sega Mega Drive • будівлі/дороги/пропси — рендери Kenney City Kits (CC0), персонажі та локації — код у палітрі Kenney</span>
+    <span class="foot-keys">WASD РУХ • SHIFT БІГ • E ДІЯ • SPACE АТАКА • 1-4 СЛОТ • M РЮКЗАК • TAB КАРТА • F ЛІХТАР • V ПОВНИЙ ЕКРАН • ESC ПАУЗА</span>
+  </footer>
+</div>
+
+<script src="js/palette.js?v=2"></script>
+<script src="js/audio.js?v=2"></script>
+<script src="js/sprites.js?v=2"></script>
+<script src="js/assets.js?v=2"></script>
+<script src="js/kenney.js?v=2"></script>
+<script src="js/landmarks.js?v=2"></script>
+<script src="js/world.js?v=2"></script>
+<script src="js/ents.js?v=2"></script>
+<script src="js/sys.js?v=2"></script>
+<script src="js/gfx.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>
